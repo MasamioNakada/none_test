@@ -1,1 +1,19 @@
-print("hola")
+import requests
+import json
+
+reqUrl = "http://apimonkey.lat/api/send/message"
+
+headersList = {
+ "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MDE0MCIsImVtYWlsIjoibmFrYWRhMjEzMEBnbWFpbC5jb20iLCJleHAiOjE2ODM3NjI2NDJ9.vcP_zaZ9Ys3bEQLTlMZq2rAKKyjZ6InMqpeUNrLQWVQ",
+ "Content-Type": "application/json" 
+}
+
+payload = json.dumps({
+  "message":"Hola mundo",
+  "phone":952841852,
+  "country_code":51
+})
+
+response = requests.request("POST", reqUrl, data=payload,  headers=headersList)
+
+print(response.text)
